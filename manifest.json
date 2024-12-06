@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Bookmark Extension",
+    "version": "1.0",
+    "description": "An extension to manage YouTube bookmarks.",
+    "permissions": [
+      "tabs"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "host_permissions": [
+      "*://*.youtube.com/*"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["*://*.youtube.com/watch*"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html"
+     
+    }
+  }
+  
