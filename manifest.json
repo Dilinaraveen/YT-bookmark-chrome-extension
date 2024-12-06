@@ -1,26 +1,37 @@
 {
-    "manifest_version": 3,
-    "name": "YouTube Bookmark Extension",
+    "name": "YT-bookmark-chrome-extension",
     "version": "1.0",
-    "description": "An extension to manage YouTube bookmarks.",
-    "permissions": [
-      "tabs"
-    ],
+    "description": "A chrome extension that allows you to bookmark timestamps in youtube videos",
+    "permissions": ["storage","tabs"],
+    "host_permissions": ["https://*.youtube.com/*"],
     "background": {
-      "service_worker": "background.js"
+        "service_worker": "background.js"
     },
-    "host_permissions": [
-      "*://*.youtube.com/*"
-    ],
     "content_scripts": [
-      {
-        "matches": ["*://*.youtube.com/watch*"],
-        "js": ["contentScript.js"]
-      }
+        {
+            "matches": ["https://*.youtube.com/*"],
+            "js": ["contentScript.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/bookmark.png",
+                "assets/play.png",
+                "assets/delete.png",
+                "assets/save.png"
+            ],
+            "matches": ["https://*.youtube.com/*"]
+        }
     ],
     "action": {
-      "default_popup": "popup.html"
-     
-    }
-  }
-  
+        "default_icon": {
+            "16": "assets/ext-icon.png",
+            "24": "assets/ext-icon.png",
+            "32": "assets/ext-icon.png"
+        },
+        "default_title": "YT-bookmark",
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}
